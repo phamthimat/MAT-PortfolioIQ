@@ -10,7 +10,11 @@ body {
     color: #ffffff;
     min-height: 100vh;
 }
-
+.hero h1 {
+    font-size: 46px;
+    margin-bottom: 15px;
+    color: #ff8a00;
+}
 .container {
     width: 100%;
     max-width: 1000px;
