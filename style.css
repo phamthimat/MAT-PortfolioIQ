@@ -562,3 +562,9 @@ footer {
         font-size: 62px;
     }
 }
+.hero p {
+    color: #ff8a00;
+    font-size: 18px;
+    line-height: 1.7;
+    font-weight: 600;
+}
