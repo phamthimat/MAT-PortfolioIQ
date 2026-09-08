@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MAT PortfolioIQ</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<div class="logo">MAT PortfolioIQ</div>
+<div class="tagline">AI-Powered Crypto Portfolio Health Analyzer</div>
+</header>
+
+<main>
+
+<section class="hero">
+<h1>Understand Your Crypto Portfolio</h1>
+<p>Analyze allocation, risk, diversification and market performance with MAT PortfolioIQ.</p>
+</section>
+
+<section class="portfolio-card">
+
+<h2>Your Portfolio</h2>
+<p class="description">Enter your portfolio value and crypto allocation.</p>
+
+<div style="margin-bottom:20px;">
+<label style="display:block;color:#9ca3af;font-size:14px;margin-bottom:8px;">
+Portfolio Value (USDT)
+</label>
+
+<input
+id="portfolioValue"
+type="number"
+value="10000"
+min="0"
+step="100"
+placeholder="10000"
+style="width:100%;background:#0b1020;border:1px solid #303b5d;color:white;padding:13px;border-radius:8px;outline:none;"
+>
+</div>
+
+<div id="assetList">
+
+<div class="asset-row">
+<input type="text" value="BTC" class="asset" placeholder="Asset">
+<input type="number" value="40" class="percentage" min="0" max="100" step="0.1">
+<span>%</span>
+<button type="button" class="remove-btn" onclick="removeAsset(this)">×</button>
+</div>
+
+<div class="asset-row">
+<input type="text" value="ETH" class="asset" placeholder="Asset">
+<input type="number" value="30" class="percentage" min="0" max="100" step="0.1">
+<span>%</span>
+<button type="button" class="remove-btn" onclick="removeAsset(this)">×</button>
+</div>
+
+<div class="asset-row">
+<input type="text" value="SOL" class="asset" placeholder="Asset">
+<input type="number" value="20" class="percentage" min="0" max="100" step="0.1">
+<span>%</span>
+<button type="button" class="remove-btn" onclick="removeAsset(this)">×</button>
+</div>
+
+<div class="asset-row">
+<input type="text" value="DOGE" class="asset" placeholder="Asset">
+<input type="number" value="10" class="percentage" min="0" max="100" step="0.1">
+<span>%</span>
+<button type="button" class="remove-btn" onclick="removeAsset(this)">×</button>
+</div>
+
+</div>
+
+<button type="button" class="add-asset-btn" onclick="addAsset()">+ Add Asset</button>
+
+<button type="button" class="analyze-btn" onclick="analyzePortfolio()">Analyze Portfolio</button>
+
+<div id="message"></div>
+
+</section>
+
+<section id="results" class="results">
+
+<h2>Portfolio Analysis</h2>
+
+<div class="score-box">
+<div class="score-title">Portfolio Health</div>
+<div id="healthScore" class="score">--</div>
+<div class="score-label">/ 100</div>
+<div id="healthLabel" class="health-label">--</div>
+</div>
+
+<div class="chart-section">
+<h2>Portfolio Allocation</h2>
+<div id="allocationChart" class="allocation-bar"></div>
+<div id="allocationLegend" class="legend"></div>
+</div>
+
+<div class="metrics">
+
+<div class="metric">
+<h3>Risk Level</h3>
+<p id="riskLevel">--</p>
+</div>
+
+<div class="metric">
+<h3>Diversification</h3>
+<p id="diversification">--</p>
+</div>
+
+<div class="metric">
+<h3>Largest Position</h3>
+<p id="largestPosition">--</p>
+</div>
+
+</div>
+
+<div class="analysis-breakdown">
+
+<h2>Health Score Breakdown</h2>
+
+<div class="breakdown-row">
+<div><span>Diversification</span><span id="diversificationScore">0/100</span></div>
+<div class="progress"><div id="diversificationProgress" class="progress-fill"></div></div>
+</div>
+
+<div class="breakdown-row">
+<div><span>Concentration Risk</span><span id="concentrationScore">0/100</span></div>
+<div class="progress"><div id="concentrationProgress" class="progress-fill"></div></div>
+</div>
+
+<div class="breakdown-row">
+<div><span>Portfolio Balance</span><span id="balanceScore">0/100</span></div>
+<div class="progress"><div id="balanceProgress" class="progress-fill"></div></div>
+</div>
+
+</div>
+
+<div class="market-section">
+
+<div class="market-header">
+<div>
+<h2>Live Market Data</h2>
+<p>Binance 24h market snapshot</p>
+</div>
+
+<div id="marketStatus" class="market-status">Waiting...</div>
+</div>
+
+<div id="marketCards" class="market-cards"></div>
+
+<div class="market-summary">
+
+<div class="market-summary-item">
+<span>Portfolio 24h Return</span>
+<strong id="portfolioImpact">--</strong>
+</div>
+
+<div class="market-summary-item">
+<span>Estimated 24h P&L</span>
+<strong id="portfolioPnL">--</strong>
+</div>
+
+<div class="market-summary-item">
+<span>Top Performer</span>
+<strong id="topPerformer">--</strong>
+</div>
+
+<div class="market-summary-item">
+<span>Worst Performer</span>
+<strong id="worstPerformer">--</strong>
+</div>
+
+</div>
+
+<div class="market-summary" style="margin-top:10px;">
+
+<div class="market-summary-item">
+<span>Portfolio Value</span>
+<strong id="displayPortfolioValue">--</strong>
+</div>
+
+<div class="market-summary-item">
+<span>Estimated Value After 24h</span>
+<strong id="estimatedValue">--</strong>
+</div>
+
+<div class="market-summary-item">
+<span>Market Signal</span>
+<strong id="marketSignal">--</strong>
+</div>
+
+<div class="market-summary-item">
+<span>Data Coverage</span>
+<strong id="dataCoverage">--</strong>
+</div>
+
+</div>
+
+<div id="marketUpdated" class="market-updated">
+Market data will appear after analysis.
+</div>
+
+</div>
+
+<div class="insights">
+<h2>AI Insights</h2>
+<div id="insightText">Analyze your portfolio to generate insights.</div>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+MAT PortfolioIQ · Built by @phamthimat
+</footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
