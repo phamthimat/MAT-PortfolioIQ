@@ -10,7 +10,12 @@ body {
     color: #ffffff;
     min-height: 100vh;
 }
-
+.hero p {
+    color: #ff8a00;
+    font-size: 18px;
+    line-height: 1.7;
+    font-weight: 600;
+}
 .container {
     width: 100%;
     max-width: 1000px;
@@ -561,10 +566,4 @@ footer {
     .score {
         font-size: 62px;
     }
-}
-.hero p {
-    color: #ff8a00;
-    font-size: 18px;
-    line-height: 1.7;
-    font-weight: 600;
 }
